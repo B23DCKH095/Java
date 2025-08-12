@@ -1,0 +1,1 @@
+{"name":"Local: J02101","url":"c:\\Users\\Alolaptop\\Desktop\\Java\\J02101.java","tests":[{"id":1755031250684,"input":"2\n3\n45 48 54 21 89 87 70 78 15\n2\n25 27 23 21","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Alolaptop\\Desktop\\Java\\J02101.java","group":"local","local":true}
