@@ -1,0 +1,1 @@
+{"name":"Local: J07046","url":"c:\\Users\\Alolaptop\\Desktop\\Java\\J07046.java","tests":[{"id":1755311463868,"input":"2\nNguyen Van Hoang\n55B1\n01/01/2021\n05/01/2021\nNguyen Trung Dung\n04C6\n01/01/2021\n10/01/2021","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Alolaptop\\Desktop\\Java\\J07046.java","group":"local","local":true}
