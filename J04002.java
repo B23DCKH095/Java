@@ -1,23 +1,24 @@
+import java.text.ParseException;
 import java.util.*;
+import java.util.zip.DataFormatException;
 
 public class J04002 {
     public static void main(String[] args){
-        Scanner r= new Scanner(System.in);
-        String a = r.next();
-        String b = r.next();
-        String c = r.next().toLowerCase();
+        Scanner r = new Scanner(System.in);
+        int a,b;
+        String c;
         try{
+            a = Integer.parseInt(r.next());
+            b = Integer.parseInt(r.next());
+            c = r.next().toLowerCase();
             StringBuilder col = new StringBuilder();
-            col.append(Character.toUpperCase(c.charAt(0)));
+            col.append(c.substring(0,1).toUpperCase());
             col.append(c.substring(1));
-            long x = Long.parseLong(a);
-            long y = Long.parseLong(b);
-            boolean ok = true;
-            if(x < 0 || y <0) ok = false;
-            if(!ok) System.out.print("INVALID");
-            else System.out.printf("%d %d %s",(x+y)*2,x*y,col);
-        } catch(NumberFormatException e){
-            System.out.print("INVALID");
+            c = col.toString();
+            if(a <= 0 || b <= 0) System.out.println("INVALID");
+            else System.out.printf("%d %d %s",(a+b)*2,a*b,c);
+        } catch(Exception e){
+            System.out.println("INVALID");
         }
     }
 }
