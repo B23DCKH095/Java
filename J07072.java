@@ -1,67 +1,46 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
-class SV implements Comparable<SV> {
-    private String ho;
-    private String dem;
-    private String ten;
-    
-    public SV(String ho, String dem, String ten) {
-        this.ho = formatName(ho);
-        this.dem = formatName(dem);
-        this.ten = formatName(ten);
+class GV implements Comparable<GV>{
+    private String name;
+    public GV(String name){
+        this.name = ChuanHoa(name);
     }
-    
-    private String formatName(String name) {
-        if (name == null || name.isEmpty()) return "";
-        return Character.toUpperCase(name.charAt(0)) + name.substring(1).toLowerCase();
+    public String ChuanHoa(String name){
+        String[] word = name.toLowerCase().trim().split("\\s+");
+        StringBuilder ret = new StringBuilder();
+        for(String tmp : word){
+            ret.append(tmp.substring(0, 1).toUpperCase());
+            ret.append(tmp.substring(1));
+            ret.append(" ");
+        }
+        return ret.toString();
     }
-    
-    @Override
-    public int compareTo(SV other) {
-        int tenCompare = this.ten.compareTo(other.ten);
-        if (tenCompare != 0) return tenCompare;
-        
-        int hoCompare = this.ho.compareTo(other.ho);
-        if (hoCompare != 0) return hoCompare;
-        
-        return this.dem.compareTo(other.dem);
+    public int compareTo(GV other){
+        String[] w1 = this.name.trim().split("\\s+");
+        String[] w2 = other.name.trim().split("\\s+");
+        int ss = w1[w1.length-1].compareTo(w2[w2.length-1]);
+        if(ss == 0) return this.name.compareTo(other.name);
+        return ss; 
     }
-    
-    @Override
-    public String toString() {
-        return String.format("%s %s %s", ho, dem, ten);
+    public String toString(){
+        return this.name;
     }
 }
-
-public class J07072 {
-    public static void main(String[] args) {
+public class J07072{
+    public static void main(String[] args) throws FileNotFoundException{
         File x = new File("DANHSACH.in");
-        try {
-            ArrayList<SV> ds = new ArrayList<>();
-            Scanner r = new Scanner(x);
-            
-            while (r.hasNextLine()) {
-                String line = r.nextLine().trim();
-                if (line.isEmpty()) continue;
-                
-                String[] words = line.split("\\s+");
-                if (words.length < 3) continue; // Skip invalid lines
-                
-                String ho = words[0];
-                String ten = words[words.length - 1];
-                String dem = String.join(" ", Arrays.copyOfRange(words, 1, words.length - 1));
-                
-                ds.add(new SV(ho.toLowerCase(), dem.toLowerCase(), ten.toLowerCase()));
-            }
-            
-            Collections.sort(ds);
-            for (SV tmp : ds) {
-                System.out.println(tmp);
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
+        Scanner r= new Scanner(x);
+        ArrayList<GV> ds = new ArrayList<>();
+        while(r.hasNextLine()){
+            ds.add(new GV(r.nextLine()));
+        }
+        Collections.sort(ds);
+        for(GV tmp : ds){
+            System.out.println(tmp);
         }
     }
 }
